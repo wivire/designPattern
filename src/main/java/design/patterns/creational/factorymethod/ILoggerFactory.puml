@@ -1,0 +1,29 @@
+@startuml
+
+package org.slf4j {
+    interface ILoggerFactory {
+       Logger getLogger(String name);
+    }
+}
+
+set namespaceSeparator none
+
+class ch.qos.logback.classic.LoggerContext implements ILoggerFactory
+
+class org.slf4j.helpers.NOPLoggerFactory implements ILoggerFactory
+
+class org.slf4j.helpers.SubstituteLoggerFactory implements ILoggerFactory
+
+org.slf4j.helpers.NOPLoggerFactory -[hidden]-> org.slf4j.Logger
+
+
+interface org.slf4j.Logger
+
+class ch.qos.logback.classicLogger implements org.slf4j.Logger
+
+class org.slf4j.helpers.NOPLogger implements org.slf4j.Logger
+
+class org.slf4j.helpers.SubstituteLogger implements org.slf4j.Logger
+
+
+@enduml

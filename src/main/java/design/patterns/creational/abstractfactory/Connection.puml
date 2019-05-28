@@ -1,0 +1,33 @@
+@startuml
+
+interface java.sql.Connection {
+    Statement createStatement()
+    PreparedStatement prepareStatement(String sql)
+    CallableStatement prepareCall(String sql)
+}
+
+interface com.mysql.jdbc.Connection extends java.sql.Connection
+
+interface com.mysql.jdbc.MySQLConnection extends com.mysql.jdbc.Connection
+
+class com.mysql.jdbc.ConnectionImpl implements com.mysql.jdbc.MySQLConnection{
+    Statement createStatement()
+    PreparedStatement prepareStatement(String sql)
+    CallableStatement prepareCall(String sql)
+}
+
+abstract class org.sqlite.jdbc4.JDBC4Connection extends org.sqlite.jdbc3.JDBC3Connection implements java.sql.Connection
+
+abstract class org.sqlite.jdbc3.JDBC3Connection extends org.sqlite.core.CoreConnection {
+    + Statement createStatement()
+    + PreparedStatement prepareStatement(String sql)
+    + CallableStatement prepareCall(String sql)
+}
+
+class org.sqlite.SQLiteConnection extends org.sqlite.jdbc4.JDBC4Connection
+
+
+com.mysql.jdbc.Connection -[hidden]> org.sqlite.core.CoreConnection
+
+
+@enduml

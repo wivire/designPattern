@@ -1,0 +1,22 @@
+@startuml
+
+interface URLStreamHandlerFactory{
+        URLStreamHandler createURLStreamHandler(String protocol);
+}
+
+note left : java.net
+
+
+class sun.misc.Launcher.Factory implements URLStreamHandlerFactory{
+    + URLStreamHandler createURLStreamHandler(String protocol)
+}
+
+"sun.misc.Launcher.Factory" -[hidden]-> "java.net.URLStreamHandler"
+
+class sun.net.www.protocol.file.Handler extends java.net.URLStreamHandler
+
+class sun.net.www.protocol.ftp.Handler extends java.net.URLStreamHandler
+
+class sun.net.www.protocol.http.Handler extends java.net.URLStreamHandler
+
+@enduml
